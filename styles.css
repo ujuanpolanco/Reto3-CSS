@@ -233,3 +233,21 @@ body:has(#contacto:target) .nav-link[href="#contacto"]::after,
         gap: calc(var(--espacio) / 2);
     }
 }
+
+/* ==========================================================
+   Accesibilidad: preferencia de movimiento
+   ========================================================== */
+
+/* El desplazamiento suave solo se activa si el usuario no pidió reducir el movimiento */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* Con movimiento reducido, los cambios de estado son instantáneos */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --duracion: 0s;
+    }
+}
