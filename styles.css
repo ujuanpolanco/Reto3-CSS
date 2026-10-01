@@ -19,6 +19,8 @@
     --duracion: 0.3s;
     --curva: cubic-bezier(0.4, 0, 0.2, 1);
     --subrayado-grosor: 2px;
+
+    --alto-encabezado: 7.5rem;
 }
 
 /* ==========================================================
@@ -159,4 +161,41 @@ main {
 .nav-link:focus-visible {
     outline: 2px solid var(--color-primario);
     outline-offset: 2px;
+}
+
+/* ==========================================================
+   Indicador de sección activa sin JavaScript
+   - :target  -> la sección del enlace pulsado queda en la URL (#id),
+                 así el enlace correspondiente se mantiene marcado.
+   - :focus-within -> marca el elemento del menú que tiene el foco.
+   - Sin #id en la URL, "Inicio" aparece como activo por defecto.
+   ========================================================== */
+.section {
+    /* Evita que el encabezado fijo tape el título de la sección destino */
+    scroll-margin-top: var(--alto-encabezado);
+}
+
+body:not(:has(.section:target)) .nav-link[href="#inicio"],
+body:has(#inicio:target) .nav-link[href="#inicio"],
+body:has(#servicios:target) .nav-link[href="#servicios"],
+body:has(#portafolio:target) .nav-link[href="#portafolio"],
+body:has(#nosotros:target) .nav-link[href="#nosotros"],
+body:has(#contacto:target) .nav-link[href="#contacto"],
+.nav-item:focus-within .nav-link {
+    color: var(--color-primario);
+}
+
+body:not(:has(.section:target)) .nav-link[href="#inicio"]::after,
+body:has(#inicio:target) .nav-link[href="#inicio"]::after,
+body:has(#servicios:target) .nav-link[href="#servicios"]::after,
+body:has(#portafolio:target) .nav-link[href="#portafolio"]::after,
+body:has(#nosotros:target) .nav-link[href="#nosotros"]::after,
+body:has(#contacto:target) .nav-link[href="#contacto"]::after,
+.nav-item:focus-within .nav-link::after {
+    transform: scaleX(1);
+}
+
+/* El título de la sección destino también se resalta */
+.section:target :is(h1, h2) {
+    color: var(--color-primario);
 }
