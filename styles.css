@@ -199,3 +199,37 @@ body:has(#contacto:target) .nav-link[href="#contacto"]::after,
 .section:target :is(h1, h2) {
     color: var(--color-primario);
 }
+
+/* ==========================================================
+   Diseño responsivo
+   ========================================================== */
+
+/* Pantallas muy pequeñas: enlaces más compactos para que quepan */
+@media (max-width: 400px) {
+    .nav-link {
+        padding: 0.4rem 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .nav-link::after {
+        left: 0.5rem;
+        right: 0.5rem;
+    }
+}
+
+/* Tabletas y escritorio (desde 768px): logo a la izquierda y menú a la derecha en una sola fila */
+@media (min-width: 768px) {
+    :root {
+        --alto-encabezado: 4.5rem;
+    }
+
+    .site-header {
+        flex-direction: row;
+        justify-content: space-between;
+        padding-inline: calc(var(--espacio) * 2);
+    }
+
+    .nav-list {
+        gap: calc(var(--espacio) / 2);
+    }
+}
