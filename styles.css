@@ -15,6 +15,10 @@
     --espacio: 1rem;
     --radio: 0.5rem;
     --ancho-contenido: 60rem;
+
+    --duracion: 0.3s;
+    --curva: cubic-bezier(0.4, 0, 0.2, 1);
+    --subrayado-grosor: 2px;
 }
 
 /* ==========================================================
@@ -107,4 +111,28 @@ main {
     font-weight: 500;
     color: var(--color-texto-suave);
     text-decoration: none;
+}
+
+/* ==========================================================
+   Subrayado deslizante al pasar el cursor
+   La línea entra desde la izquierda y sale hacia la derecha
+   ========================================================== */
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.3rem;
+    height: var(--subrayado-grosor);
+    border-radius: var(--subrayado-grosor);
+    background-color: var(--color-primario);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--duracion) var(--curva);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
